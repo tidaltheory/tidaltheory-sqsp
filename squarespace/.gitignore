@@ -1,0 +1,20 @@
+
+# OS FILES ============================================================
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+Icon?
+
+## THUMBNAILS
+._*
+ehthumbs.db
+Thumbs.db
+
+## EXTERNAL DISKS
+.Spotlight-V100
+.Trashes
+
+
+# DEPENDENCIES ========================================================
+.sqs-cache
