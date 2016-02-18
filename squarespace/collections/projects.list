@@ -2,29 +2,31 @@
 
   {.repeated section items}
 
-    <article class="{@|item-classes}" id="article-{id}" data-item-id="{id}">
-      <h2 class="entry-title" data-content-field="title">
+    <article class="{@|item-classes}" id="article-{id}" data-item-id="{id}" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+      <h2 class="entry-title" data-content-field="title" itemprop="name">
         {.passthrough?}
-          <a href="{sourceUrl}">{title}</a>
+          <a href="{sourceUrl}" itemprop="url">{title}</a>
         {.or}
-          <a href="{fullUrl}">{title}</a>
+          <a href="{fullUrl}" itemprop="url">{title}</a>
         {.end}
       </h2>
 
-      {.excerpt?}
-        <div class="body entry-content">{excerpt}</div>
-      {.or}
-        <div class="body entry-content">
+      <div class="body entry-content" itemprop="description">
+        {.excerpt?}
+          {excerpt}
+        {.or}
           {.section body}{@}{.end}
           {.passthrough?}{.or}{.section sourceUrl}<div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>{.end}{.end}
-        </div>
-      {.end}
+        {.end}
+      </div>
 
       {postItemInjectCode}
     </article>
 
   {.alternates with}
+
     <div class="post-divider"></div>
+
   {.end}
 
 </div>
@@ -32,10 +34,10 @@
 {.if pagination}
   <nav class="pagination">
     {.if pagination.prevPage}
-      <a href="{pagination.prevPageUrl}" class="prev-item">&larr; Newer</a>
+      <a class="prev-item" href="{pagination.prevPageUrl}">&larr; Newer</a>
     {.end}
     {.if pagination.nextPage}
-      <a href="{pagination.nextPageUrl}" class="next-item">Older &rarr;</a>
+      <a class="next-item" href="{pagination.nextPageUrl}">Older &rarr;</a>
     {.end}
   </nav>
 {.end}
