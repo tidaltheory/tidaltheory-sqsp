@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-{.if template.mobileStylesEnabled}
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-{.end}
-{squarespace-headers}
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  {.if template.mobileStylesEnabled}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  {.end}
+  {squarespace-headers}
 </head>
+
 {.if template.mobileStylesEnabled}{.or}<!-- Mobile Styles Are Disabled -->{.end}
-<body id="{squarespace.page-id}" class="{squarespace.page-classes} page-{collection.urlId}{.if template.mobileStylesEnabled} mobile-enabled{.end}">
+
+<body class="{squarespace.page-classes} page-{collection.urlId}{.if template.mobileStylesEnabled} mobile-enabled{.end}" id="{squarespace.page-id}">
 
   <div id="canvasWrapper">
     <div id="canvas">
@@ -172,4 +174,3 @@
 
 </body>
 </html>
-
