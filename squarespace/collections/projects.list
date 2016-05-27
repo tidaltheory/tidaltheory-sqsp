@@ -16,7 +16,12 @@
           {excerpt}
         {.or}
           {.section body}{@}{.end}
-          {.passthrough?}{.or}{.section sourceUrl}<div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>{.end}{.end}
+          {.passthrough?}
+          {.or}
+            {.section sourceUrl}
+              <div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>
+            {.end}
+          {.end}
         {.end}
       </div>
 
