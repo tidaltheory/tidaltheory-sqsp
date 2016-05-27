@@ -1,79 +1,117 @@
 {.section item}
 
-<article class="{@|item-classes}" id="article-{id}" data-item-id="{id}">
+  <article class="project-body {@|item-classes}" id="article-{id}" data-item-id="{id}">
 
-  <!--POST HEADER-->
+    <section class="project-intro">
+      <div class="layout-container">
 
-  <header>
-  </header>
+        <div class="layout layout--flush">
+          <div class="layout-item layout-item--1-3"></div>
 
-  <!--POST BODY-->
+          <div class="layout-item layout-item--2-3">
+            <div class="project-icon">
+              {.main-image?}
+                <figure class="main-image content-fit">
+                  <img {@|image-meta}{.if colorData} data-color-suggestedbg="#{colorData.suggestedBgColor}"{.end} alt="Site icon">
+                </figure>
+              {.end}
 
-  <h1 data-content-field="title" class="entry-title">
-    {.passthrough?}
-      <a href="{sourceUrl}">{title}</a>
-    {.or}
-      <a href="{fullUrl}">{title}</a>
-    {.end}
-  </h1>
-
-  <div class="body entry-content">
-    {.section body}{@}{.end}
-    {.passthrough?}{.or}{.section sourceUrl}<div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>{.end}{.end}
-  </div>
-
-  <!--POST FOOTER-->
-
-  <footer>
-    <div class="meta">
-      <div class="grouping">
-      {.section categories}
-        <span class="categories">
-          <span class="categories-title">Categories: </span>
-          {.repeated section @}<a href="{collection.fullUrl}?category={@|url-encode}" rel="tag">{@}</a>{.alternates with}, {.end}
-        </span>
-      {.end}
-      {.section tags}
-        <span class="tags">
-          <span class="tags-title">Tags:</span>
-          {.repeated section @}<a href="{collection.fullUrl}?tag={@|url-encode}" rel="tag">{@}</a>{.alternates with}, {.end}
-        </span>
-      {.end}
-      </div>
-      <div class="info">
-        <span class="date"><time class="published" datetime="{addedOn|date %F}">{addedOn|date %B %e, %Y}</time></span>
-        <span class="author">by <a href="{collection.fullUrl}?author={author.id}">{author.displayName}</a></span>
-
-        <div class="comments-social-like">
-          {@|like-button}
-          {@|social-button-inline}
+              {excerpt}
+            </div>
+          </div>
         </div>
+
       </div>
-    </div>
-  {postItemInjectCode}
+    </section>
 
-  </footer>
+    {.if customContent.showcase_mobile}
+      <section class="project-showcase">
+        <div class="layout-container">
 
-  <!-- COMMENTS -->
+          <div class="layout layout--flush">
+            <div class="layout-item layout-item--1-3">
+              <h2>Showcase&#8212;</h2>
+            </div>
 
-  <section id="comments-{id}" class="comments-wrapper">
-    {@|comments}
-  </section>
+            <div class="layout-item layout-item--2-3">
+              <figure class="main-image content-fit">
+                <img {customContent.showcase_mobile|image-meta} alt="{title} responsive showcase">
+              </figure>
+            </div>
+          </div>
 
+        </div>
+      </section>
+    {.end}
+
+    <section class="project-notes">
+      <div class="layout-container">
+
+        <div class="layout layout--flush">
+          <div class="layout-item layout-item--1-3">
+            <h2>Contribution&#8212;</h2>
+          </div>
+
+          <div class="layout-item layout-item--2-3">
+            {.section tags}
+              <ul>
+                {.repeated section @}
+                  <li><a href="{collection.fullUrl}?tag={@|url-encode}" rel="tag">{@}</a></li>
+                {.end}
+              </ul>
+            {.end}
+
+            <p><a href="{sourceUrl}">Visit {title}</a></p>
+          </div>
+        </div>
+
+        <div class="layout layout--flush">
+          <div class="layout-item layout-item--1-3">
+          </div>
+
+          <div class="layout-item layout-item--2-3">
+            {.section body}{@}{.end}
+          </div>
+
+      </div>
+    </section>
+
+    <section class="project-images">
+    </section>
 
   </article>
+
 {.end}
 
-
-<!--PAGINATION-->
-
+{# PAGINATION #}
 {.section pagination}
-  <nav class="pagination clear">
+  <nav class="project-nav">
     {.section prevItem}
-      <a class="prev-item" href="{fullUrl}">&larr; {title}</a>
-    {.end}
-    {.section nextItem}
-      <a class="next-item" href="{fullUrl}">{title} &rarr;</a>
+      <div class="project-nav-image">
+        <figure class="main-image content-fit">
+          <img {customContent.cover|image-meta}>
+        </figure>
+      </div>
+
+      <div class="project-nav-overlay"></div>
+
+      <div class="project-nav-content">
+        <div class="layout-container">
+
+          <div class="layout layout--flush">
+            <div class="layout-item layout-item--1-3">
+              <h6 class="project-nav-title">Next project&#8212;</h6>
+            </div>
+
+            <div class="layout-item layout-item--2-3">
+              <a class="project-next js-parent-hover" href="{fullUrl}">{title}</a>
+
+              <p><a href="{collection.fullUrl}">See all work</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     {.end}
   </nav>
 {.end}

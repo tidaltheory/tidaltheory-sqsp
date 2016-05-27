@@ -1,86 +1,47 @@
-<div class="article-list hfeed" data-collection-id="{id}">
+<section class="work" data-collection-id="{id}">
+  <div class="layout-container">
 
-{.repeated section items}
+    <div class="layout layout--flush">
 
-<article class="{@|item-classes}" id="article-{id}" data-item-id="{id}">
-
-  <!--POST HEADER-->
-
-  <header>
-  </header>
-
-  <!--POST BODY-->
-
-  <h1 data-content-field="title" class="entry-title">
-    {.passthrough?}
-      <a href="{sourceUrl}">{title}</a>
-    {.or}
-      <a href="{fullUrl}">{title}</a>
-    {.end}
-  </h1>
-
-  {.excerpt?}
-    <div class="body entry-content">{excerpt} <a class="read-more" href="{fullUrl}">Read More</a></div>
-  {.or}
-    <div class="body entry-content">
-      {.section body}{@}{.end}
-      {.passthrough?}{.or}{.section sourceUrl}<div class="entry-source">Source: <a href="{sourceUrl}" target="_blank">{sourceUrl|truncate 42}</a></div>{.end}{.end}
-    </div>
-  {.end}
-
-  <!--POST FOOTER-->
-
-  <footer>
-    <div class="meta">
-      <div class="grouping">
-        {.section categories}
-          <span class="categories">
-            <span class="categories-title">Categories: </span>
-            {.repeated section @}<a href="?category={@|url-encode}" rel="tag">{@}</a>{.alternates with}, {.end}
-          </span>
-        {.end}
-        {.section tags}
-          <span class="tags">
-            <span class="tags-title">Tags: </span>
-            {.repeated section @}<a href="?tag={@|url-encode}" rel="tag">{@}</a>{.alternates with}, {.end}
-          </span>
-        {.end}
+      <div class="layout-item layout-item--1-3">
+        <h2 class="section-title">Latest work&#8212;</h2>
       </div>
-      <div class="info">
-        <span class="date"><time class="published" datetime="{addedOn|date %F}">{addedOn|date %B %e, %Y}</time></span>
-        <span class="author">by <a href="?author={author.id}">{author.displayName}</a></span>
-        <div class="comments-social-like">
-          {.comments?}
-            {.if websiteSettings.disqusShortname}
-              {@|comment-link}
-            {.or}
-              {.section publicCommentCount}
-                <span class="comments"><a href="{fullUrl}#comments-{id}">{@} Comment{@|pluralize}</a></span>
-              {.or}
-                <span class="comments"><a href="{fullUrl}#comments-{id}">Comment</a></span>
-              {.end}
-            {.end}
-          {.end}
-          {@|like-button}
-          {@|social-button-inline}
-        </div>
+
+      <div class="layout-item layout-item--2-3">
+
+        {.repeated section items}
+
+          <a class="project {@|item-classes}" id="article-{id}" data-item-id="{id}" href="{fullUrl}">
+            <div class="project-image">
+              <figure class="main-image content-fit">
+                <img {customContent.cover|image-meta}>
+              </figure>
+            </div>
+
+            <div class="project-overlay"></div>
+
+            <div class="project-lid project-lid--a"></div>
+            <div class="project-lid project-lid--b"></div>
+
+            <div class="project-content">
+              <div>
+                <h3 class="project-title" data-content-field="title">{title}</h3>
+                <p class="project-tagline">{customContent.tagline}</p>
+              </div>
+            </div>
+            {postItemInjectCode}
+          </a>
+
+        {.end}
+
       </div>
+
     </div>
-    {postItemInjectCode}
-  </footer>
 
+  </div>
+</section>
 
-  </article>
-{.alternates with}
-  <div class="post-divider"></div>
-{.end}
-
-</div>
-
-
-
-<!--PAGINATION-->
-
+{# PAGINATION #}
 {.if pagination}
   <nav class="pagination">
     {.if pagination.prevPage}
